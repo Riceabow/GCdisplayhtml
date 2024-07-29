@@ -56,12 +56,12 @@ body, html {
 }
 #p2r2c1r1{
     height: 7%;
-    background: url('images/P2/24.PNG') left center no-repeat;
+    background: url('images/P2/24.png') left center no-repeat;
     background-size: contain;
 }
 #p2r2c1r2{
     height: 35%;
-    background: url('images/P2/29.PNG') left center no-repeat;
+    background: url('images/P2/29.png') left center no-repeat;
     background-size: contain;
 }
 
@@ -72,7 +72,7 @@ body, html {
     /* display: flex; */
     /* align-items: center; */
     padding-left: 50px ;
-    background: url('images/P2/28.PNG') left center no-repeat;
+    background: url('images/P2/28.png') left center no-repeat;
     background-size: contain;
 }
 .lineAniContainer{
@@ -100,18 +100,18 @@ body, html {
 
 #p2r2c1r4{
     height: 8%;
-    background: url('images/P2/23.PNG') left center no-repeat;
+    background: url('images/P2/23.png') left center no-repeat;
     background-size: contain;
 }
 #p2r2c2r1{
     margin-left: 50px;
     height: 100%;
-    background: url('images/P2/22.PNG') left center no-repeat;
+    background: url('images/P2/22.png') left center no-repeat;
     background-size: contain;
 }
 #p2r3c1r1{
     height: 12%;
-    background: url('images/P2/23.PNG') left center no-repeat;
+    background: url('images/P2/23.png') left center no-repeat;
     background-size: contain;
 }
 
@@ -129,7 +129,7 @@ body, html {
 
 #p2r3c2r1{
     height:10%;
-    background: url('images/P2/30.PNG') left center no-repeat;
+    background: url('images/P2/30.png') left center no-repeat;
     background-size: contain;
 }
 
@@ -141,23 +141,23 @@ body, html {
 }
  
 #p2t1{
-    background: url('images/P2/5.PNG') left center no-repeat;
+    background: url('images/P2/5.png') left center no-repeat;
     background-size: contain;
 }
 #p2t2{
-    background: url('images/P2/4.PNG') left center no-repeat;
+    background: url('images/P2/4.png') left center no-repeat;
     background-size: contain;
 }
 #p2t3{
-    background: url('images/P2/3.PNG') left center no-repeat;
+    background: url('images/P2/3.png') left center no-repeat;
     background-size: contain;
 }
 #p2t4{
-    background: url('images/P2/2.PNG') left center no-repeat;
+    background: url('images/P2/2.png') left center no-repeat;
     background-size: contain;
 }
 #p2t5{
-    background: url('images/P2/1.PNG') left center no-repeat;
+    background: url('images/P2/1.png') left center no-repeat;
     background-size: contain;
 }
 #circle1{
