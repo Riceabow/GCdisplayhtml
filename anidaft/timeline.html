@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circle and Line Animation</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200vh;
+      margin: 0;
+    }
+    .container {
+      position: relative;
+      width: 80%;
+      height: 80vh;
+      border: 1px solid #000;
+    }
+    .circle {
+      width: 50px;
+      height: 50px;
+      background-color: orange;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .circle.hidden {
+      visibility: hidden;
+    }
+    .line {
+      position: absolute;
+      background-color: orange;
+      height: 2px;
+      width: 0;
+    }
+    .number {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="circle" id="circle1" style="top: 0; left: 0;"></div>
+    <div class="line" id="line1" style="top: 25px; left: 25px;"></div>
+    <div class="number" id="number1">0</div>
+    <div class="circle hidden" id="circle2" style="top: -25px; left: calc(25% - 25px); transform: scale(0);"></div>
+    <div class="line" id="line2" style="left: calc(25% + 25px); top: 25px;"></div>
+    <div class="number" id="number2">0</div>
+    <div class="circle hidden" id="circle3" style="top: calc(100% - 25px); left: calc(25% - 25px); transform: scale(0);"></div>
+    <div class="number" id="number3">0</div>
+  </div>
+
+  <script>
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+
+    // Animation for lines and circles
+    tl.to("#line1", { width: "calc(25% - 25px)", duration: 1 })
+      .to("#circle2", { visibility: "visible", scale: 1, duration: 0.5 }, "<")
+      .to("#line2", { height: "calc(100% - 50px)", duration: 1 })
+      .to("#circle3", { visibility: "visible", scale: 1, duration: 0.5 }, "<");
+
+    // aniP2
+    const lines = [
+      { id: "#line1", number: "#number1", targetNumber: 58 },
+      { id: "#line2", number: "#number2", targetNumber: 295 },
+      { id: "#line3", number: "#number3", targetNumber: 89 }
+    ];
+
+    lines.forEach(line => {
+      const lineContainer = document.querySelector(line.id);
+      const lineElement = lineContainer.querySelector(".line");
+      const targetLength = (line.targetNumber / 300) * lineContainer.clientWidth;
+
+      // Animate line width
+      tl.to(lineElement, {
+        width: targetLength + 'px',
+        duration: 2,
+        ease: "power2.inOut"
+      }, "<");
+
+      // Animate number count
+      tl.to({}, {
+        duration: 2,
+        onUpdate: function() {
+          const progress = this.progress();
+          const currentNumber = Math.floor(progress * line.targetNumber);
+          document.querySelector(line.number).innerText = currentNumber;
+        },
+        ease: "power2.inOut"
+      }, "<");
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Animation</title>
+ <style>
+#p2r3c2r2 {
+ position: relative;
+width: 80%;
+height: 600px; /* 示例高度，你可以根据需要调整 */
+background-color: #f0f0f0;
+margin-bottom: 50px;
+}
+
+.circle {
+ position: absolute;
+width: 20px;
+height: 20px;
+background-color: orange;
+border-radius: 50%;
+transform: translate(-50%, -50%);
+}
+
+ .line {
+ position: absolute;
+background-color: orange;
+transform-origin: center center;
+}
+</style>
+</head>
+<body>
+<div id="p2r3c2r2"></div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+<script>
+// Register the ScrollTrigger plugin
+ gsap.registerPlugin(ScrollTrigger);
+
+ // Define the animation function
+function createAnimation() {
+ const container = document.getElementById('p2r3c2r2');
+const containerWidth = container.clientWidth;
+ const containerHeight = container.clientHeight;
+const lineWidth = containerWidth * 0.25; // 25% of the container width
+
+ // Create elements
+const circle1 = document.createElement('div');
+ const line1 = document.createElement('div');
+const line2 = document.createElement('div');
+const circle2 = document.createElement('div');
+const line3 = document.createElement('div');
+const line4 = document.createElement('div');
+const circle3 = document.createElement('div');
+const line5 = document.createElement('div');
+const circle4 = document.createElement('div');
+const line6 = document.createElement('div');
+const line7 = document.createElement('div');
+const circle5 = document.createElement('div');
+
+ circle1.classList.add('circle');
+ circle2.classList.add('circle');
+circle3.classList.add('circle');
+circle4.classList.add('circle');
+circle5.classList.add('circle');
+line1.classList.add('line');
+line2.classList.add('line');
+ line3.classList.add('line');
+ line4.classList.add('line');
+ line5.classList.add('line');
+line6.classList.add('line');
+line7.classList.add('line');
+
+ container.appendChild(circle1);
+ container.appendChild(line1);
+ container.appendChild(line2);
+container.appendChild(circle2);
+ container.appendChild(line3);
+container.appendChild(line4);
+container.appendChild(circle3);
+container.appendChild(line5);
+container.appendChild(circle4);
+container.appendChild(line6);
+container.appendChild(line7);
+container.appendChild(circle5);
+
+// Set initial positions and sizes
+gsap.set(circle1, { x: 0, y: 0 });
+gsap.set(line1, { x: 0, y: 0, width: lineWidth, height: 10 });
+gsap.set(line2, { x: lineWidth, y: 0, width: 10, height: containerHeight });
+gsap.set(circle2, { x: lineWidth, y: containerHeight });
+ gsap.set(line3, { x: lineWidth, y: containerHeight, width: lineWidth, height: 10 });
+gsap.set(line4, { x: lineWidth * 2, y: containerHeight, width: 10, height: containerHeight });
+gsap.set(circle3, { x: lineWidth * 2, y: 0 });
+gsap.set(line5, { x: lineWidth * 2, y: 0, width: lineWidth, height: 10 });
+ gsap.set(circle4, { x: lineWidth * 3, y: 0 });
+gsap.set(line6, { x: lineWidth * 3, y: 0, width: 10, height: containerHeight });
+gsap.set(line7, { x: lineWidth * 3, y: containerHeight, width: lineWidth, height: 10 });
+gsap.set(circle5, { x: lineWidth * 4, y: containerHeight });
+
+// Create the timeline
+const timeline = gsap.timeline({
+scrollTrigger: {
+ trigger: container,
+start: "top top",
+end: "bottom bottom",
+scrub: true
+}
+ });
+
+ // Define the animation steps
+timeline
+.to(line1, { width: lineWidth, duration: 1 })
+.to(line2, { height: containerHeight, duration: 1 })
+.to(circle2, { x: lineWidth, y: containerHeight, duration: 0 }, "-=1")
+ .to(line3, { width: lineWidth, duration: 1 })
+.to(line4, { height: containerHeight, duration: 1 })
+.to(circle3, { x: lineWidth * 2, y: 0, duration: 0 }, "-=1")
+ .to(line5, { width: lineWidth, duration: 1 })
+.to(circle4, { x: lineWidth * 3, y: 0, duration: 0 }, "-=1")
+ .to(line6, { height: containerHeight, duration: 1 })
+ .to(circle5, { x: lineWidth * 4, y: containerHeight, duration: 0 }, "-=1")
+.to(line7, { width: lineWidth, duration: 1 });
+}
+
+// Create the animation when the document is ready
+document.addEventListener("DOMContentLoaded", createAnimation);
+</script>
+</body>
+</html>

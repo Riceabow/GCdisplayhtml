@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Image Toggle with GSAP</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .background-container {
+        width: 300px;
+        height: 200px;
+        background-image: url("images/pingzi.png"),
+          url("images/P2/top50adjs.png");
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+        position: relative;
+        cursor: pointer;
+      }
+      #page2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        visibility: hidden; /* Initially hidden */
+      }
+      #page2.show {
+        visibility: visible; /* Show when activated */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-container" id="backgroundContainer"></div>
+    <div id="page2"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js"></script>
+    <script>
+      const container = document.getElementById("backgroundContainer");
+      const page2 = document.getElementById("page2");
+
+      container.addEventListener("mouseenter", () => {
+        // Hide first background image and show second
+        gsap.to(container, {
+          duration: 1,
+          backgroundImage: 'url("images/P2/top50adjs.png"), none',
+        });
+
+        // Move to the center of page2 and scale up
+        const rect = container.getBoundingClientRect();
+        const containerX = rect.left + rect.width / 2;
+        const containerY = rect.top + rect.height / 2;
+        const page2X = window.innerWidth / 2;
+        const page2Y = window.innerHeight / 2;
+
+        page2.classList.add("show");
+        gsap.to(container, {
+          duration: 1,
+          x: page2X - containerX,
+          y: page2Y - containerY,
+          scale: 3,
+          ease: "power2.inOut",
+          onComplete: () => {
+            // Append the container to page2 after animation
+            page2.appendChild(container);
+          },
+        });
+      });
+
+      container.addEventListener("mouseleave", () => {
+        // Reset background image
+        gsap.to(container, {
+          duration: 1,
+          backgroundImage:
+            'url("images/pingzi.png"), url("images/P2/top50adjs.png")',
+        });
+
+        // Move back to original position and scale down
+        const rect = container.getBoundingClientRect();
+        const containerX = rect.left + rect.width / 2;
+        const containerY = rect.top + rect.height / 2;
+        const page2X = window.innerWidth / 2;
+        const page2Y = window.innerHeight / 2;
+
+        gsap.to(container, {
+          duration: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+          ease: "power2.inOut",
+          onComplete: () => {
+            // Remove the container from page2 after animation
+            document.body.appendChild(container);
+            page2.classList.remove("show");
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
